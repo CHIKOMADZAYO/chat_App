@@ -5,20 +5,19 @@ import { useColorScheme } from 'react-native'
 import ThemedView from './components/ThemedView'
 import { colors } from '../constants/colors'
 
-const Home = () => {
+const Contact = () => {
   const colorScheme = useColorScheme()
   const theme = colorScheme === 'dark' ? colors.dark : colors.light
 
   return (
     <ThemedView style={styles.container}>
-      <Text style={[styles.title, { color: theme.text }]}>Home Page</Text>
-      <Link href="/about" style={[styles.link, { color: theme.primary }]}>About Page</Link>
-      <Link href="/contact" style={[styles.link, { color: theme.secondary }]}>Contact Page</Link>
+      <Text style={[styles.title, { color: theme.text }]}>Contact Page</Text>
+      <Link href="/" style={[styles.link, { color: theme.primary }]}>Home Page</Link>
     </ThemedView>
   )
 }
 
-export default Home
+export default Contact
 
 const styles = StyleSheet.create({
   container: {
