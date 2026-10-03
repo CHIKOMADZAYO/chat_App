@@ -1,59 +1,68 @@
-import { StyleSheet } from 'react-native'
+import { useColorScheme } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { MaterialIcons } from '@expo/vector-icons'
-
+import { colors } from '../../constants/colors'
 
 
 const DashboardLayout = () => {
+  const colorScheme = useColorScheme()
+  const theme = colorScheme === 'dark' ? colors.dark : colors.light
+
   return (
     <Tabs
-       screenOptions={{
+      screenOptions={{
         headerShown: false,
-
-        tabBarActiveTintColor: "#2563EB",
-        tabBarInactiveTintColor: "#94A3B8",
-
-     tabBarStyle: {
-      position: "absolute",
-      left: 20,
-      right: 20,
-      bottom:7,
-
-      height: 70,
-
-      borderRadius: 20,
-
-      borderTopWidth: 0,
-
-      elevation:2,
-
-      shadowOffset: {
-        width: 0,
-        height: 4,
-      },
-
-      shadowOpacity: 0.15,
-      shadowRadius: 10,
-    },
-
-      tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: "600",
+        tabBarActiveTintColor: theme.primary,
+        tabBarInactiveTintColor: theme.textMuted,
+        tabBarStyle: {
+          position: 'absolute',
+          left: 18,
+          right: 18,
+          bottom: 12,
+          height: 70,
+          paddingTop: 6,
+          paddingBottom: 6,
+          backgroundColor: theme.card,
+          borderRadius: 22,
+          borderWidth: 1,
+          borderColor: theme.border,
+          elevation: 8,
+          shadowColor: '#0F172A',
+          shadowOffset: { width: 0, height: 6 },
+          shadowOpacity: 0.12,
+          shadowRadius: 14,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '700',
+          marginTop: 2,
         },
       }}
     >
-
-      <Tabs.Screen name="list" options={{ title: 'List', tabBarIcon: () => <MaterialIcons name="list" size={24} color="#2563EB" /> }} />
-      <Tabs.Screen name="create" options={{ title: 'Create', tabBarIcon: () => <MaterialIcons name="add" size={24} color="#2563EB" /> }} />
-      <Tabs.Screen name="profile" options={{ title: 'Profile', tabBarIcon: () => <MaterialIcons name="person-outline" size={24} color="#2563EB" /> }} />
+      <Tabs.Screen
+        name="list"
+        options={{
+          title: 'Messages',
+          tabBarIcon: ({ color }) => <MaterialIcons name="chat-bubble-outline" size={22} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="create"
+        options={{
+          title: 'New chat',
+          tabBarIcon: ({ color }) => <MaterialIcons name="edit" size={22} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <MaterialIcons name="person-outline" size={23} color={color} />,
+        }}
+      />
     </Tabs>
-    
   )
 }
 
 export default DashboardLayout
-
-const styles = StyleSheet.create({
-  
-})
