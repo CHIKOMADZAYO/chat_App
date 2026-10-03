@@ -5,13 +5,23 @@ import { Link } from 'expo-router'
 import ThemedView from '../components/ThemedView'
 import ThemedText from '../components/ThemedText'
 import Spacer from '../components/Spacer'
+import ThemedButton from '../components/ThemedButton'
 
 const login = () => {
+    // Function to handle create account logic
+    const handleLogin = () => {
+        // Handle create account logic here
+        console.log('Login Button pressed')
+    }
   return (
     <ThemedView style={styles.container}>
         <Spacer/>
       <ThemedText style={styles.title}>Login</ThemedText>
       <Spacer height={100} />
+      <ThemedButton  onPress={handleLogin} >
+        <ThemedText>Login</ThemedText>
+      </ThemedButton>
+        <Spacer height={10} />
       <Link href="/register">
         <ThemedText>Don't have an account? Register</ThemedText>
       </Link>
