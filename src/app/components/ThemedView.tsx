@@ -9,26 +9,24 @@ type ThemedViewProps = {
   safeArea?: boolean
 }
 
-const ThemedView = ({ style, children, safeArea = false }: ThemedViewProps) => {
+const ThemedView = ({ style, children, safeArea = true }: ThemedViewProps) => {
   const colorScheme = useColorScheme()
   const theme = colorScheme === 'dark' ? colors.dark : colors.light
-
-  if (!safeArea) {
-    return (
-      <View style={[{ backgroundColor: theme.background }, style]}>
-        {children}
-      </View>
-    )
-  }
-
   const insets = useSafeAreaInsets()
 
   return (
-    <View style={[{ backgroundColor: theme.background,
-  paddingTop: insets.top, paddingBottom: insets.bottom
-
-     }, style]}>
-          {children}
+    <View
+      style={[
+        {
+          flex: 1,
+          backgroundColor: theme.background,
+          paddingTop: safeArea ? insets.top : 0,
+          paddingBottom: safeArea ? insets.bottom : 0,
+        },
+        style,
+      ]}
+    >
+      {children}
     </View>
   )
 }

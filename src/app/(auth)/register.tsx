@@ -1,4 +1,4 @@
-import { Keyboard, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { Keyboard, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
 
@@ -21,23 +21,35 @@ const register = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ThemedView style={styles.container}>
-        <Spacer />
-        <ThemedText style={styles.title}>Create Account</ThemedText>
-        <Spacer height={100} />
-        <ThemedTextInput text="Email" style={styles.input} onChangeText={setEmail} />
-        <Spacer height={10} />
-        <ThemedTextInput text="Password" secureTextEntry={true} style={styles.input} onChangeText={setPassword} />
-        <Spacer height={10} />
-        <ThemedTextInput text="Confirm Password" secureTextEntry={true} style={styles.input} onChangeText={setPassword} />
-        <Spacer height={10} />
+        <View style={styles.card}>
+          <ThemedText style={styles.eyebrow}>Create your account</ThemedText>
+          <ThemedText style={styles.title}>Register</ThemedText>
 
-        <ThemedButton onPress={handleCreateAccount}>
-          <ThemedText>Create Account</ThemedText>
-        </ThemedButton>
-        <Spacer height={100} />
-        <Link href="/(auth)/login">
-          <ThemedText>Already have an account? Login</ThemedText>
-        </Link>
+          <Spacer height={24} />
+
+          <ThemedTextInput text={email} placeholder="Email" style={styles.input} onChangeText={setEmail} />
+          <Spacer height={12} />
+          <ThemedTextInput text={password} placeholder="Password" secureTextEntry style={styles.input} onChangeText={setPassword} />
+          <Spacer height={12} />
+          <ThemedTextInput text={password} placeholder="Confirm Password" secureTextEntry style={styles.input} onChangeText={setPassword} />
+
+          <View style={styles.metaRow}>
+            <ThemedText style={styles.helperText}>Secure access</ThemedText>
+            <ThemedText style={styles.helperText}>2 min setup</ThemedText>
+          </View>
+
+          <Spacer height={18} />
+
+          <ThemedButton onPress={handleCreateAccount}>
+            <ThemedText style={styles.buttonText}>Create Account</ThemedText>
+          </ThemedButton>
+
+          <Spacer height={18} />
+
+          <Link href="/(auth)/login" style={styles.footerText}>
+            <ThemedText style={styles.footerText}>Already have an account? Login</ThemedText>
+          </Link>
+        </View>
       </ThemedView>
     </TouchableWithoutFeedback>
   )
@@ -47,29 +59,58 @@ export default register
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-    title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-    button: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
-
+    paddingVertical: 24,
   },
-    input: {
-    width: '100%',
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 28,
+    padding: 24,
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.12,
+    shadowRadius: 20,
+    elevation: 6,
+  },
+  eyebrow: {
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+    color: '#2563EB',
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: '#0F172A',
+    letterSpacing: -0.7,
+  },
+  input: {
+    marginBottom: 0,
+    backgroundColor: '#F8FAFC',
+  },
+  metaRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 14,
+    marginBottom: 4,
+  },
+  helperText: {
+    fontSize: 12,
+    color: '#64748B',
+    fontWeight: '600',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  footerText: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#2563EB',
+    fontWeight: '700',
   },
 })

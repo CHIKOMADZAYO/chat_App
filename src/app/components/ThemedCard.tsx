@@ -12,7 +12,16 @@ const ThemedCard = ({ style, children }: ThemedCardProps) => {
   const theme = colorScheme === 'dark' ? colors.dark : colors.light
 
   return (
-    <View style={[styles.cardText, { backgroundColor: theme.card }, style]}>
+    <View
+      style={[
+        styles.cardText,
+        {
+          backgroundColor: theme.card,
+          borderColor: theme.border,
+        },
+        style,
+      ]}
+    >
       {children}
     </View>
   )
@@ -23,12 +32,13 @@ export default ThemedCard
 const styles = StyleSheet.create({
   cardText: {
     padding: 20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
+    borderRadius: 22,
+    borderWidth: 1,
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.08,
+    shadowRadius: 18,
+    elevation: 4,
   },
 })
 

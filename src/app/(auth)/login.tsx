@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React, { useState } from 'react'
 import { Link, useRouter } from 'expo-router'
 
@@ -10,32 +10,56 @@ import ThemedTextInput from '../components/ThemedTextInput'
 
 const login = () => {
   const router = useRouter()
-
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [user, setUser] = useState(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleLogin = () => {
-    console.log('Logined User:', user)
     console.log('Login Button pressed', { email, password })
     router.replace('/')
   }
 
   return (
     <ThemedView style={styles.container}>
-      <Spacer />
-      <ThemedText style={styles.title}>Login</ThemedText>
-      <Spacer height={100} />
-      <ThemedTextInput text="Email" style={styles.input} onChangeText={setEmail} />
-      <Spacer height={10} />
-      <ThemedTextInput text="Password" secureTextEntry={true} style={styles.input} onChangeText={setPassword} />
-      <ThemedButton onPress={handleLogin}>
-        <ThemedText>Login</ThemedText>
-      </ThemedButton>
-      <Spacer height={10} />
-      <Link href="/(auth)/register">
-        <ThemedText>Don't have an account? Register</ThemedText>
-      </Link>
+      <View style={styles.card}>
+        <ThemedText style={styles.eyebrow}>Welcome back</ThemedText>
+        <ThemedText style={styles.title}>Login</ThemedText>
+
+        <Spacer height={24} />
+
+        <ThemedTextInput
+          text={email}
+          placeholder="Email"
+          style={styles.input}
+          onChangeText={setEmail}
+        />
+
+        <Spacer height={12} />
+
+        <ThemedTextInput
+          text={password}
+          placeholder="Password"
+          secureTextEntry
+          style={styles.input}
+          onChangeText={setPassword}
+        />
+
+        <View style={styles.metaRow}>
+          <ThemedText style={styles.helperText}>Remember me</ThemedText>
+          <ThemedText style={styles.linkText}>Forgot password?</ThemedText>
+        </View>
+
+        <Spacer height={18} />
+
+        <ThemedButton onPress={handleLogin}>
+          <ThemedText style={styles.buttonText}>Login</ThemedText>
+        </ThemedButton>
+
+        <Spacer height={18} />
+
+        <Link href="/(auth)/register" style={styles.footerText}>
+          <ThemedText style={styles.footerText}>Don’t have an account? Register</ThemedText>
+        </Link>
+      </View>
     </ThemedView>
   )
 }
@@ -44,22 +68,63 @@ export default login
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 24,
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 28,
+    padding: 24,
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.12,
+    shadowRadius: 20,
+    elevation: 6,
+  },
+  eyebrow: {
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+    color: '#2563EB',
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: '#0F172A',
+    letterSpacing: -0.7,
+  },
+  input: {
+    marginBottom: 0,
+    backgroundColor: '#F8FAFC',
+  },
+  metaRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
+    marginTop: 14,
+    marginBottom: 4,
   },
-    title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  helperText: {
+    fontSize: 13,
+    color: '#475569',
   },
-    input: {
-    width: '100%',
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+  linkText: {
+    fontSize: 13,
+    color: '#2563EB',
+    fontWeight: '700',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  footerText: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#2563EB',
+    fontWeight: '700',
   },
 })

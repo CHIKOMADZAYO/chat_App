@@ -1,20 +1,37 @@
-import { StyleSheet, Text, View, ViewStyle, StyleProp, TextInput} from 'react-native'
+import { StyleProp, StyleSheet, TextInput, ViewStyle } from 'react-native'
 import React from 'react'
 
 type ThemedTextInputProps = {
   style?: StyleProp<ViewStyle>
-  children?: React.ReactNode
   text?: string
+  placeholder?: string
   secureTextEntry?: boolean
   onChangeText?: (text: string) => void
-  
 }
 
-const ThemedTextInput = ({style, children, text, secureTextEntry, onChangeText}: ThemedTextInputProps) => {
+const ThemedTextInput = ({ style, text, placeholder, secureTextEntry, onChangeText }: ThemedTextInputProps) => {
   return (
-    <TextInput style={[{backgroundColor: 'white', color: 'black'}, style]} value={text} secureTextEntry={secureTextEntry} onChangeText={onChangeText}>
-      {children}
-    </TextInput>
+    <TextInput
+      style={[
+        {
+          width: '100%',
+          backgroundColor: '#F8FAFC',
+          color: '#0F172A',
+          borderWidth: 1,
+          borderColor: '#E2E8F0',
+          borderRadius: 12,
+          paddingHorizontal: 14,
+          paddingVertical: 12,
+          fontSize: 16,
+        },
+        style,
+      ]}
+      value={text}
+      placeholder={placeholder}
+      placeholderTextColor="#64748B"
+      secureTextEntry={secureTextEntry}
+      onChangeText={onChangeText}
+    />
   )
 }
 
