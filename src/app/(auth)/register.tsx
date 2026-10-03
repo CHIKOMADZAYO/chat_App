@@ -1,31 +1,45 @@
-import { Pressable, StyleSheet } from 'react-native'
+import { Keyboard, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 
 import ThemedView from '../components/ThemedView'
 import ThemedText from '../components/ThemedText'
 import Spacer from '../components/Spacer'
 import ThemedButton from '../components/ThemedButton'
+import ThemedTextInput from '../components/ThemedTextInput'
 
 const register = () => {
-// Function to handle create account logic
+  const router = useRouter()
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
   const handleCreateAccount = () => {
-    // Handle create account logic here
-    console.log('Create Account Button pressed')
+    console.log('Create Account Button pressed', { email, password })
+    router.replace('/')
   }
+
   return (
-    <ThemedView style={styles.container}>
-        <Spacer/>
-      <ThemedText style={styles.title}>Create Account</ThemedText>
-     
-      <ThemedButton  onPress={handleCreateAccount} >
-        <ThemedText>Create Account</ThemedText>
-      </ThemedButton>
-      <Spacer height={100} />
-      <Link href="/login">
-        <ThemedText>Already have an account? Login</ThemedText>
-      </Link>
-    </ThemedView>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <ThemedView style={styles.container}>
+        <Spacer />
+        <ThemedText style={styles.title}>Create Account</ThemedText>
+        <Spacer height={100} />
+        <ThemedTextInput text="Email" style={styles.input} onChangeText={setEmail} />
+        <Spacer height={10} />
+        <ThemedTextInput text="Password" secureTextEntry={true} style={styles.input} onChangeText={setPassword} />
+        <Spacer height={10} />
+        <ThemedTextInput text="Confirm Password" secureTextEntry={true} style={styles.input} onChangeText={setPassword} />
+        <Spacer height={10} />
+
+        <ThemedButton onPress={handleCreateAccount}>
+          <ThemedText>Create Account</ThemedText>
+        </ThemedButton>
+        <Spacer height={100} />
+        <Link href="/(auth)/login">
+          <ThemedText>Already have an account? Login</ThemedText>
+        </Link>
+      </ThemedView>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -48,5 +62,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
+
+  },
+    input: {
+    width: '100%',
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
   },
 })

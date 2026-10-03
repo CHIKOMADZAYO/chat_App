@@ -1,7 +1,7 @@
-import {  StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { Ionicons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
 
 
@@ -44,9 +44,9 @@ const DashboardLayout = () => {
       }}
     >
 
-      <Tabs.Screen name="list" options={{ title: 'List',tabBarIcon: () => <Ionicons name="list" size={24} /> }} />
-      <Tabs.Screen name="create" options={{ title: 'Create',tabBarIcon: () => <Ionicons name="add" size={24} /> }} />
-      <Tabs.Screen name="profile" options={{ title: 'Profile',tabBarIcon: () => <Ionicons name="person-outline" size={24} /> }} /> 
+      <Tabs.Screen name="list" options={{ title: 'List', tabBarIcon: () => <MaterialIcons name="list" size={24} color="#2563EB" /> }} />
+      <Tabs.Screen name="create" options={{ title: 'Create', tabBarIcon: () => <MaterialIcons name="add" size={24} color="#2563EB" /> }} />
+      <Tabs.Screen name="profile" options={{ title: 'Profile', tabBarIcon: () => <MaterialIcons name="person-outline" size={24} color="#2563EB" /> }} />
     </Tabs>
     
   )

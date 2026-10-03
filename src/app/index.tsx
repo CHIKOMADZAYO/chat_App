@@ -34,7 +34,7 @@ const Home = () => {
       <Link href="/(auth)/register" style={[styles.link, { color: theme.secondary }]}>
         <ThemedText>Register</ThemedText>
       </Link>
-      <Link href="/profile" style={[styles.link, { color: theme.secondary }]}>
+      <Link href="/(dashboard)/profile" style={[styles.link, { color: theme.secondary }]}>
         <ThemedText>Profile</ThemedText>
       </Link>
     </ThemedView>

@@ -9,7 +9,7 @@ import profile from './profile'
 
 const list=() => {
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={styles.container } safeArea={true}>
       <ThemedText style={{ fontSize: 24, fontWeight: 'bold' }}>List Page</ThemedText>
       <Spacer height={20} />
       <Link href="/" style={{ fontSize: 18 }}>
