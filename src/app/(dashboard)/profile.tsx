@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native'
-import ThemedView from '../components/ThemedView'
+import ThemedView from '../../components/ThemedView'
 import { Link } from 'expo-router'
-import ThemedText from '../components/ThemedText'
-import ThemedCard from '../components/ThemedCard'
+import ThemedText from '../../components/ThemedText'
+import ThemedCard from '../../components/ThemedCard'
 
 const profile = () => {
   return (

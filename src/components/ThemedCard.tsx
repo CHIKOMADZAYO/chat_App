@@ -1,6 +1,6 @@
 import { StyleSheet, type StyleProp, type ViewStyle, View, useColorScheme } from 'react-native'
 import React from 'react'
-import { colors } from '../../constants/colors'
+import { colors } from '../constants/colors'
 
 type ThemedCardProps = {
   style?: StyleProp<ViewStyle>
@@ -41,4 +41,3 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 })
-

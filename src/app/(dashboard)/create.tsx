@@ -1,9 +1,9 @@
 import { Image, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { useRouter } from 'expo-router'
-import ThemedView from '../components/ThemedView'
-import ThemedText from '../components/ThemedText'
-import ThemedTextInput from '../components/ThemedTextInput'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
+import ThemedTextInput from '../../components/ThemedTextInput'
 import { colors } from '../../constants/colors'
 import { useColorScheme } from 'react-native'
 

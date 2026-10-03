@@ -1,8 +1,8 @@
-import { StyleProp, StyleSheet, TextInput, ViewStyle } from 'react-native'
+import { StyleProp, StyleSheet, TextInput, TextStyle } from 'react-native'
 import React from 'react'
 
 type ThemedTextInputProps = {
-  style?: StyleProp<ViewStyle>
+  style?: StyleProp<TextStyle>
   text?: string
   placeholder?: string
   secureTextEntry?: boolean

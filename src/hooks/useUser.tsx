@@ -1,7 +1,6 @@
 import React from 'react';
 import { UserContext } from '../context/userContext';
 
-
 const useUser = () => {
   const context = React.useContext(UserContext);
   if (!context) {

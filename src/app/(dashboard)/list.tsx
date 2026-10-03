@@ -1,10 +1,9 @@
-import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import { Image, Pressable, ScrollView, StyleSheet, useColorScheme, View } from 'react-native'
 import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
-import ThemedView from '../components/ThemedView'
-import ThemedText from '../components/ThemedText'
+import { useLocalSearchParams, useRouter } from 'expo-router'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
 import { colors } from '../../constants/colors'
-import { useColorScheme } from 'react-native'
 
 const conversations = [
   {
@@ -50,13 +49,14 @@ const conversations = [
 ]
 
 const List = () => {
+  const router = useRouter()
   const params = useLocalSearchParams<{ name?: string; message?: string; image?: string }>()
   const colorScheme = useColorScheme()
   const theme = colorScheme === 'dark' ? colors.dark : colors.light
   const createdConversation = params.name && params.message && params.image
     ? {
         name: params.name,
-        message: params.message,
+        message: `You: ${params.message}`,
         time: 'Now',
         unread: 0,
         image: params.image,
@@ -92,11 +92,25 @@ const List = () => {
 
         <View style={[styles.list, { backgroundColor: theme.card, borderColor: theme.border }]}>
           {visibleConversations.map((conversation, index) => (
-            <View
+            <Pressable
               key={conversation.name}
-              style={[
+              accessibilityRole="button"
+              accessibilityLabel={`Open conversation with ${conversation.name}`}
+              onPress={() => router.push({
+                pathname: '/chat/[id]',
+                params: {
+                  id: conversation.name,
+                  name: conversation.name,
+                  image: conversation.image,
+                  message: conversation.message,
+                  sentByMe: String(conversation.message.startsWith('You:')),
+                  online: String(conversation.online),
+                },
+              })}
+              style={({ pressed }) => [
                 styles.conversation,
                 index < visibleConversations.length - 1 && { borderBottomColor: theme.border, borderBottomWidth: StyleSheet.hairlineWidth },
+                pressed && styles.conversationPressed,
               ]}
             >
               <View style={styles.avatarWrap}>
@@ -120,7 +134,7 @@ const List = () => {
                   )}
                 </View>
               </View>
-            </View>
+            </Pressable>
           ))}
         </View>
       </ScrollView>
@@ -199,6 +213,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 13,
     paddingVertical: 14,
+  },
+  conversationPressed: {
+    opacity: 0.72,
   },
   avatarWrap: {
     width: 54,

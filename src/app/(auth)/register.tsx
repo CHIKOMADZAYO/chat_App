@@ -2,11 +2,11 @@ import { Keyboard, StyleSheet, TouchableWithoutFeedback, View } from 'react-nati
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
 
-import ThemedView from '../components/ThemedView'
-import ThemedText from '../components/ThemedText'
-import Spacer from '../components/Spacer'
-import ThemedButton from '../components/ThemedButton'
-import ThemedTextInput from '../components/ThemedTextInput'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemedText'
+import Spacer from '../../components/Spacer'
+import ThemedButton from '../../components/ThemedButton'
+import ThemedTextInput from '../../components/ThemedTextInput'
 
 const register = () => {
   const router = useRouter()

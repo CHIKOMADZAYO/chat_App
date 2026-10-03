@@ -1,6 +1,6 @@
 import { StyleProp, StyleSheet, Text, TextStyle, useColorScheme } from 'react-native'
 import React from 'react'
-import { colors } from '../../constants/colors'
+import { colors } from '../constants/colors'
 
 type ThemedTextProps = {
   children?: React.ReactNode

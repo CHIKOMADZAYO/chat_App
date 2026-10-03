@@ -1,10 +1,9 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, useColorScheme, View } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
-import { useColorScheme } from 'react-native'
-import ThemedView from './components/ThemedView'
-import ThemedText from './components/ThemedText'
-import ThemedCard from './components/ThemedCard'
+import ThemedView from '../components/ThemedView'
+import ThemedText from '../components/ThemedText'
+import ThemedCard from '../components/ThemedCard'
 import { colors } from '../constants/colors'
 
 const Home = () => {
